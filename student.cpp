@@ -3,4 +3,7 @@
 //
 
 #include <iostream>
-#include <student.h>
+#include "student.h"
+#include "degree.h"
+
+std::string degreeEnumToString (DegreeProgram degree);

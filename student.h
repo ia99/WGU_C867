@@ -4,6 +4,7 @@
 
 #ifndef STUDENT_H
 #define STUDENT_H
+#include <iostream>
 #include <degree.h>
 #include <array>
 #include <string>
@@ -13,9 +14,9 @@ public:
 
 
     // constructors
-//Student() = default;
+Student() = default;
 
-Student(int student_id, int age, int days1, int days2, int days3, const std::string &first_name,
+Student(const std::string &student_id, int age, int days1, int days2, int days3, const std::string &first_name,
         const std::string &last_name, const std::string &email, const DegreeProgram degree)
         : studentID(student_id),
           age(age),
@@ -44,7 +45,7 @@ Student(int student_id, int age, int days1, int days2, int days3, const std::str
 }
 
     void printAll() {
-        std::cout << "A" << get_student_id() << ",";
+        std::cout << get_student_id() << ",";
         std::cout << get_first_name() << ",";
         std::cout << get_last_name() << ",";
         std::cout << get_email() << ",";
@@ -57,7 +58,7 @@ Student(int student_id, int age, int days1, int days2, int days3, const std::str
     }
 
     // setter
-    void set_student_id(int student_id) {
+    void set_student_id(std::string student_id) {
         this->studentID = student_id;
     }
 
@@ -86,7 +87,7 @@ Student(int student_id, int age, int days1, int days2, int days3, const std::str
     }
 
     // getter
-    [[nodiscard]] int get_student_id() const {
+    [[nodiscard]] std::string get_student_id() const {
         return studentID;
     }
 
@@ -120,9 +121,9 @@ Student(int student_id, int age, int days1, int days2, int days3, const std::str
 
 private:
     // data types
-    int studentID, age, days1, days2, days3;
+    int age, days1, days2, days3;
     std::array<int, 3> daysLeft;
-    std::string firstName, lastName, email;
+    std::string studentID, firstName, lastName, email;
     DegreeProgram degree;
 
 };
