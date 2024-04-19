@@ -10,10 +10,18 @@
 class Roster {
 
 public:
-    Student* studentArray[5];
+    Student* studentArray[5]{};
     Roster();
-    void populateStudentArray(std::string studentData);
-    std::string degreeEnumToString (DegreeProgram degree);
+
+    static Student *populateStudentArray(const std::string& studentData);
+
+    void add(const std::string &studentID, const std::string &firstName, const std::string &lastName, const std::string &emailAddress, int age,
+             int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram);
+    void remove(const std::string &studentID);
+    void printAll() const;
+    void printAverageDaysInCourse(const std::string &studentID) const;
+    void printInvalidEmails() const;
+    void printByDegreeProgram(DegreeProgram degreeProgram) const;
     ~Roster();
 
 };

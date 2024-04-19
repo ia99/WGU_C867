@@ -30,7 +30,7 @@ Student(const std::string &student_id, int age, int days1, int days2, int days3,
 
     // functions
 
-    std::string degreeEnumToString (DegreeProgram degree) {
+    static std::string degreeEnumToString (const DegreeProgram degree) {
     switch (degree) {
         case 0:
             return "SECURITY";
@@ -41,21 +41,11 @@ Student(const std::string &student_id, int age, int days1, int days2, int days3,
         case 2:
             return "SOFTWARE";
         break;
+        default:
+            return "degreeEnumToString error";
     }
 }
 
-    void printAll() {
-        std::cout << get_student_id() << ",";
-        std::cout << get_first_name() << ",";
-        std::cout << get_last_name() << ",";
-        std::cout << get_email() << ",";
-        std::cout << get_age() << ",";
-        for(int i=0; i<=2; i++) {
-            std::cout << get_days_left(i) << "," ;
-        }
-            std::cout << degreeEnumToString(get_program());
-
-    }
 
     // setter
     void set_student_id(std::string student_id) {
@@ -95,9 +85,6 @@ Student(const std::string &student_id, int age, int days1, int days2, int days3,
         return age;
     }
 
-//    [[nodiscard]] std::array<int, 3> get_days_left() const {
-//        return daysLeft;
-//    }
 
     [[nodiscard]] std::string get_first_name() const {
         return firstName;
@@ -117,6 +104,10 @@ Student(const std::string &student_id, int age, int days1, int days2, int days3,
 
     [[nodiscard]] int get_days_left(int i) const {
     return daysLeft[i];
+}
+    void print() {
+    std::cout << this->get_student_id() << "\t First Name: " <<  this->get_first_name() << "\t Last Name: " << this->get_last_name() << "\t Age:"  << this->get_age() << "\t daysInCourse: {";
+    std::cout<<this->get_days_left(0)<<", "<< this->get_days_left(1)<<", "<< this->get_days_left(2)<<"} Degree Program: "<< this->degreeEnumToString(this->get_program())<<std::endl;
 }
 
 private:

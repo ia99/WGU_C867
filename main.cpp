@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 #include "student.h"
 #include "roster.h"
 #include "degree.h"
@@ -12,24 +11,24 @@ int main() {
         "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
         "A5,Ian,Allen,ialle66@wgu.edu,38,18,23,29,SOFTWARE" };
 
+    std::cout << "Course: Scripting and Programming - Applications - C867" << std::endl;
+    std::cout << "Programming language: C++" << std::endl;
+    std::cout << "Student ID: 012131931" << std::endl;
+    std::cout << "Student name: Ian Allen" << std::endl;
+
     Roster * classRoster = new Roster();
     for (int i=0;i<=4;i++) {
-        classRoster[i].populateStudentArray(studentData[i]);
+        classRoster->studentArray[i]=classRoster->populateStudentArray(studentData[i]);
     }
 
-
-/*  std::cout << "studentData[] length is: " << studentData->size() << std::endl;
-    for(int x=0;x<studentData->size();x++) {
-    for(int x=0;x<=4;x++) {
-    std::cout << studentData[x] << "[" << x << "] " << std::endl;
+    classRoster->printAll();
+    classRoster->printInvalidEmails();
+    for(int i=0; i<=4; i++) {
+        classRoster->printAverageDaysInCourse(classRoster->studentArray[i]->get_student_id());
     }
-
-
-    for(int a=1;a<=5;a++) {
-        for(int b=1; b<=9; b++) {
-            //int tempID = studentData[];
-        }
-    }
-*/
-
+    classRoster->printByDegreeProgram(SOFTWARE);
+    classRoster->remove("A3");
+    classRoster->printAll();
+    classRoster->remove("A3");
+    classRoster->~Roster();
 }
