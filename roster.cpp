@@ -1,6 +1,3 @@
-//
-// Created by ian_a on 4/6/2024.
-//
 #include "roster.h"
 #include "degree.h"
 #include "student.h"
@@ -8,12 +5,12 @@
 #include <iomanip>
 
 Roster::Roster() {
-    Student* studentArray[5];
+    Student* studentArray[5]{};
 }
 
 Roster::~Roster() {
     std::cout << "Destructor called on roster" << std::endl;
-    for (int i=0; i<std::size(this->studentArray); i++) {
+    for (size_t i=0; i<std::size(this->studentArray); i++) {
         this->studentArray[i]=nullptr;
         delete this->studentArray[i];
     }
@@ -22,11 +19,11 @@ Roster::~Roster() {
 Student *Roster::populateStudentArray(const std::string& studentData) {
         auto *objStudent = new Student();
 
-        int lengthInitial = studentData.find(',');
+        size_t lengthInitial = studentData.find(',');
         const std::string studentID = studentData.substr(0, lengthInitial);
         objStudent->set_student_id(studentID);
 
-        int lengthCurrent = lengthInitial+1;
+        size_t lengthCurrent = lengthInitial+1;
         lengthInitial = studentData.find(',', lengthCurrent);
         const std::string firstName = studentData.substr(lengthCurrent, lengthInitial - lengthCurrent);
         objStudent->set_first_name(firstName);
@@ -79,7 +76,7 @@ void Roster::add(const std::string &studentID, const std::string &firstName, con
 }
 
 void Roster::remove(const std::string &studentID) {
-    for (int i=0; i<std::size(this->studentArray); i++) {
+    for (size_t i=0; i<std::size(this->studentArray); i++) {
         if(this->studentArray[i]!=nullptr && this->studentArray[i]->get_student_id()==studentID) {
             studentArray[i] = nullptr;
             std::cout << "Deleted studentID: "<<studentID<<std::endl;
@@ -91,14 +88,14 @@ void Roster::remove(const std::string &studentID) {
 
     void Roster::printAll() const {
         std::cout << "Printing: all" << std::endl;
-        for (int i=0; i<std::size(this->studentArray); i++) {
+        for (size_t i=0; i<std::size(this->studentArray); i++) {
             if(this->studentArray[i]!=nullptr)
             this->studentArray[i]->print();
         }
     }
 
     void Roster::printAverageDaysInCourse(const std::string &studentID) const {
-        for(int i=0; i<std::size(this->studentArray); i++) {
+        for(size_t i=0; i<std::size(this->studentArray); i++) {
             if(this->studentArray[i]->get_student_id()==studentID) {
                 std::cout<<"Student ID: "<<studentID<<" Average days in course: "<< std::fixed << std::setprecision(2) << (((float(this->studentArray[i]->get_days_left(0)))+(float(this->studentArray[i]->get_days_left(1)))+(float(this->studentArray[i]->get_days_left(2))))/3.0) << std::endl;
                 return;
@@ -109,7 +106,7 @@ void Roster::remove(const std::string &studentID) {
 
     void Roster::printInvalidEmails() const {
         std::cout << "Invalid email:";
-        for(int i=0; i<std::size(this->studentArray); i++) {
+        for(size_t i=0; i<std::size(this->studentArray); i++) {
             if(this->studentArray[i]->get_email().find('@')== std::string::npos || this->studentArray[i]->get_email().find('.')== std::string::npos || (this->studentArray[i]->get_email().find(' ')!= std::string::npos))
                 std::cout << " " << this->studentArray[i]->get_email();
         }
@@ -130,7 +127,7 @@ void Roster::remove(const std::string &studentID) {
             break;
         }
 
-        for(int i=0; i<std::size(this->studentArray); i++) {
+        for(size_t i=0; i<std::size(this->studentArray); i++) {
             if(this->studentArray[i]->degreeEnumToString(this->studentArray[i]->get_program())=="SECURITY" && degreeProgram == SECURITY)
                 studentArray[i]->print();
             else if(this->studentArray[i]->degreeEnumToString(this->studentArray[i]->get_program())=="NETWORK" && degreeProgram == NETWORK)

@@ -16,11 +16,12 @@ int main() {
     std::cout << "Student ID: 012131931" << std::endl;
     std::cout << "Student name: Ian Allen" << std::endl;
 
+    // create class roster and loop through array, populate w/ student data
     Roster * classRoster = new Roster();
     for (int i=0;i<=4;i++) {
         classRoster->studentArray[i]=classRoster->populateStudentArray(studentData[i]);
     }
-
+    
     classRoster->printAll();
     classRoster->printInvalidEmails();
     for(int i=0; i<=4; i++) {
